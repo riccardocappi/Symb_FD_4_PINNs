@@ -1,0 +1,8 @@
+__pycache__/
+outputs/
+trained_models_*
+trained_models
+optuna_journal_storage.log
+TODO.txt
+pysr
+old/

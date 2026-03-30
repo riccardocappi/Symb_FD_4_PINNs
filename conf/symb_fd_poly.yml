@@ -1,0 +1,16 @@
+model_name: "SYMB-FD"
+device: "cuda"
+opt: "Adam"
+criterion: "MSE"
+storage: "journal"
+search_space:
+  n_hidden_neurons: [16, 64]
+  n_hidden_layers: [2, 5]
+  activation_function: ["relu", "tanh", "leaky_relu", "softplus"]
+  mu1: [0.1, 1.0]
+  mu2: [0.1, 1.0]
+  power: [2, 3]
+  epochs: [1000, 3000]
+  patience: [200, 500]
+  batch_size: [256, 512, 1400]
+  lr: [0.0001, 0.01]

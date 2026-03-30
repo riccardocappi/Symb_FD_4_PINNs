@@ -1,0 +1,20 @@
+model_name: "PINN"
+device: "cuda"
+opt: "Adam"
+criterion: "MSE"
+storage: "journal"
+search_space:
+  n_hidden_neurons: [16, 64]
+  n_hidden_layers: [2, 5]
+  activation_function: ["relu", "tanh", "leaky_relu", "softplus"]
+  n_hidden_neurons_fd: [16, 64]
+  n_hidden_layers_fd: [1, 5]
+  activation_function_fd: ["relu", "tanh", "leaky_relu", "softplus"]
+  mu1: [0.1, 1.0]
+  mu2: [0.1, 1.0]
+  xi: [0.1, 1.0]
+  a_b_bound: [0.05, 0.10, 0.15, 0.20]
+  epochs: [1000, 3000]
+  patience: [200, 500]
+  batch_size: [256, 512, 1400]
+  lr: [0.0001, 0.01]
