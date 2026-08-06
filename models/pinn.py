@@ -178,8 +178,6 @@ class LWR_NN(PINN):
         
         y_hat = self.get_preds(x_train)
         
-        X_f_train.requires_grad_(True)
-        
         f_out = self(X_f_train)
         
         if not self.split_out:

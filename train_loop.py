@@ -8,6 +8,7 @@ import numpy as np
 from models.pinn import PINN
 import random
 from torch.utils.data import Subset, TensorDataset
+from copy import deepcopy
 
 
 def seed_everything(seed: int = 42):
@@ -31,6 +32,8 @@ def train_epoch(model:PINN, loader, X_f_train, optimizer, device, scaler = None)
         x_train = x_train.to(device)
         u_train = u_train.to(device)
 
+        X_f_train.requires_grad_(True)
+        
         if scaler is not None:
             x_in = scaler.transform(x_train)
             X_f_in = scaler.transform(X_f_train)
@@ -121,7 +124,7 @@ def train_loop(model:PINN, dataset, X_f_train, lr=1e-3, n_epochs=200, batch_size
             best_epoch = epoch
             ckpt = {
                 'epoch': epoch,
-                'model_state_dict': {k: v.detach().cpu() for k, v in model.state_dict().items()},
+                'model_state_dict': deepcopy({k: v.detach().cpu() for k, v in model.state_dict().items()}),
                 'val_loss': val_loss
             }
             best_model_ckpt = ckpt

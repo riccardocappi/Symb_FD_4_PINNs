@@ -368,6 +368,7 @@ class Experiments(ABC):
             
             ckpt["test_pred"] = u_pred_test.detach().cpu()
             ckpt["test_true"] = u_test.detach().cpu()
+            ckpt["u_pred_all"] = u_pred_all.detach().cpu()
             
             self._save_ckpt(ckpt, None)
             
