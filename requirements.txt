@@ -1,0 +1,55 @@
+# ---------------------------------------------------------------------------
+# Symb_FD_4_PINNs -- Python dependencies
+#
+# Tested with Python 3.12 and CUDA 11.8.
+#
+# PyTorch (and the torch-sparse / torch-scatter companions) must be installed
+# from the PyTorch / PyG wheel indexes, so install this file with:
+#
+#   pip install -r requirements.txt \
+#       --extra-index-url https://download.pytorch.org/whl/cu118 \
+#       -f https://data.pyg.org/whl/torch-2.3.0+cu118.html
+#
+# For a CPU-only machine drop the two index flags and remove the "+cu118"
+# local version tags below.
+#
+# NOTE: PySR runs a Julia backend. The `juliacall` dependency installs a
+# private Julia; the SymbolicRegression.jl environment is then created
+# automatically the first time PySRRegressor is instantiated.
+# ---------------------------------------------------------------------------
+
+# --- core numerics ---------------------------------------------------------
+numpy==1.26.4          # <2.0 required by torch 2.3 / tsl
+scipy==1.16.3
+pandas==2.3.3
+matplotlib==3.10.7
+PyYAML==6.0.1
+tqdm==4.67.1
+pyDOE==0.3.8           # Latin-hypercube sampling of the collocation points
+
+# --- deep learning ---------------------------------------------------------
+torch==2.3.1+cu118
+torch-scatter==2.1.2+pt23cu118
+torch-sparse==0.6.18+pt23cu118
+torch-geometric==2.3.1
+pytorch-lightning==2.6.0
+torchmetrics==1.8.2
+einops==0.8.1
+
+# tsl (Torch Spatiotemporal) -- only the MinMaxScaler is used.
+# If the PyPI wheel is unavailable, install from source instead:
+#   pip install git+https://github.com/TorchSpatiotemporal/tsl.git
+torch-spatiotemporal==0.9.5
+
+# --- symbolic regression / symbolic FD -------------------------------------
+pysr==1.5.9
+juliacall==0.9.26
+sympy==1.14.0
+sympytorch==0.1.4      # compiles a SymPy expression into a torch.nn.Module
+
+# --- hyper-parameter search ------------------------------------------------
+optuna==4.6.0
+
+# --- optional: notebooks & plotting extras ---------------------------------
+# seaborn
+# ipykernel

@@ -6,3 +6,4 @@ optuna_journal_storage.log
 TODO.txt
 pysr
 old/
+.vscode
